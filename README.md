@@ -6,6 +6,7 @@ Write a simple NodeJS RateLimiter middleware
 ### Description
 This middleware helps protect a route from being flooded.
 For example, if there are more than 10 requests / second to an endpoint, it should output 429 - too many requests.
+NOTE: Must not use an existing Rate Limiter framework or library
 
 An example usage:
 

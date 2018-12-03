@@ -4,12 +4,12 @@
 Write a simple NodeJS RateLimiter middleware
 
 ### Description
-This middleware helps protect a route from too many requests.
+This middleware helps protect a route from being flooded.
 For example, if there are more than 10 requests / second to an endpoint, it should output 429 - too many requests.
 
 An example usage:
 
-    app.use('/create-user', *MyFancyRateLimter*({maxReqsPerSecond: 10}), (req, res) {
+    app.use('/create-user', `MyFancyRateLimiter`({maxReqsPerSecond: 10}), (req, res) {
         ... actual create user in database ...
     })
 

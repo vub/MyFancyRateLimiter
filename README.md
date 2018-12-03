@@ -15,7 +15,7 @@ An example usage:
 
 This would mean that if there are more than 10 rps, the endpoint will respond with 429 immediately
 
-### requirements
+### Requirements
 *MyFancyRateLimiter* can accept many options:
 - cooldownTime
 

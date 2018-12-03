@@ -21,7 +21,7 @@ This would mean that if there are more than 10 rps, the endpoint will respond wi
 
 > Default: 15.
 
-> After reaching 429, subsequent requests must wait 15 seconds. During that duration, 429 is the expected output
+> After reaching 429, subsequent requests must wait 15 seconds. During that duration, 429 is the expected output. Also during that period, you must set a header X-remaining-cooldown to the number of seconds remaining before making another request
 
 - maxReqsPerSecond
 

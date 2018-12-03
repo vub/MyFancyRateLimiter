@@ -19,15 +19,18 @@ This would mean that if there are more than 10 rps, the endpoint will respond wi
 *MyFancyRateLimiter* can accept many options:
 1. cooldownTime
 
-> default: 15
+> Default: 15.
+
 > After reaching 429, subsequent requests must wait 15 seconds. During that duration, 429 is the expected output
 
 2. maxReqsPerSecond
 
-> default: 10
+> Default: 10
+
 > This is the number of maximum request per second that this endpoint can accept, can be decimal, so 0.5 means that an endpoint only accept 1 request every 2 seconds
 
 3. requestIdentifier:
 
-> default: (req) => ''
+> Default: (req) => ''
+
 > This function accepts `req` object and outputs the key of the request. Eg: if `requestIdentifier` is set to `(req) => request.connection.remoteAddress`, this means that the rate limiter only activates for requests coming from the same client IP address.

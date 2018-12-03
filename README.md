@@ -9,16 +9,16 @@ For example, if there are more than 10 requests / second to an endpoint, it shou
 
 An example usage:
 
-app.use('/create-user', *MyFancyRateLimter*({maxReqsPerSecond: 10}), (req, res) {
-    ... actual create user in database ...
-})
+    app.use('/create-user', *MyFancyRateLimter*({maxReqsPerSecond: 10}), (req, res) {
+        ... actual create user in database ...
+    })
 
 This would mean that if there are more than 10 rps, the endpoint will respond with 429 immediately
 
 ### requirements
 *MyFancyRateLimiter* can accept many options:
 - cooldownTime: 15
--- After reaching 429 - too many requests, subsequent requests must wait 15 seconds. During that duration, 429 is the expected output
+-- After reaching 429, subsequent requests must wait 15 seconds. During that duration, 429 is the expected output
 
 - maxReqsPerSecond: 10
 -- This is the number of maximum request per second that this endpoint can accept, can be decimal, so 0.5 means that an endpoint only accept 1 request every 2 seconds

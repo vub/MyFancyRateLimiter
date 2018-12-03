@@ -29,7 +29,7 @@ This would mean that if there are more than 10 rps, the endpoint will respond wi
 
 > Default: 10
 
-> This is the number of maximum request per second that this endpoint can accept, can be decimal, so 0.5 means that an endpoint only accept 1 request every 2 seconds
+> This is the number of maximum request per second that this endpoint can accept. Can be decimal, so 0.5 means that an endpoint only accept 1 request every 2 seconds
 
 - `requestIdentifier`
 

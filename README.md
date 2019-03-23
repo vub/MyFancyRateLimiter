@@ -36,3 +36,17 @@ This would mean that if there are more than 10 rps, the endpoint will respond wi
 > Default: (req) => ''
 
 > This function accepts `req` object and outputs the key of the request. Eg: if `requestIdentifier` is set to `(req) => request.connection.remoteAddress`, this means that the rate limiter only activates for requests coming from the same client IP address.
+
+### Solution
+
+Install
+
+> npm install
+
+Start
+
+> npm run start
+
+The Rate Limiter middleware
+
+> http://localhost:3000/create-user

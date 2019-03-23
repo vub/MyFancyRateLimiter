@@ -1,5 +1,16 @@
 const moment = require('moment');
 
+/*
+ * Author: Vu Bui
+ * Date create: March 23, 2019
+ * Author note: This approach is design for accuracy.
+ * Timestamp of request was stored for use later,
+ * there fore maxReqsPerSecond should be small to get effective memory.
+ * 
+ * Another approach call "Sliding window counters" is more suitable for production using.
+ * https://www.figma.com/blog/an-alternative-approach-to-rate-limiting/
+ */
+
 function MyFancyRateLimiter(options) {
   // Add more default options
   const defaultOptions = {

@@ -23,7 +23,7 @@ function MyFancyRateLimiter(options) {
       return 'Access able after ' + time + ' milliseconds';
     }
   }
-  options = Object.assign(options, defaultOptions);
+  options = Object.assign(defaultOptions, options);
 
   // Refine input information
   if (options.maxReqsPerSecond >= 1) {
@@ -36,7 +36,7 @@ function MyFancyRateLimiter(options) {
 
   function rateLimit(req, res, next) {
     // Store is saving request timestamp for each id
-    var id = options.requestIdentifier(req);
+    const id = options.requestIdentifier(req);
     options.store = options.store || {};
     options.store[id] = options.store[id] || {
       requests: [],
@@ -45,14 +45,14 @@ function MyFancyRateLimiter(options) {
 
     // Check if is penalty
     if (options.store[id].isCountdown == true) {
-      var now = moment().valueOf();
-      var lastReq = moment.unix(options.store[id].requests[0]);
-      var countDownDiff = moment.unix(now).diff(lastReq) / 1000;
+      const now = moment().valueOf();
+      const lastReq = moment.unix(options.store[id].requests[0]);
+      const countDownDiff = moment.unix(now).diff(lastReq) / 1000;
       if (countDownDiff > options.cooldownTime * 1000) {
         options.store[id].requests = [];
         options.store[id].isCountdown = false;
       } else {
-        var remainTime = options.cooldownTime * 1000 - countDownDiff;
+        const remainTime = options.cooldownTime * 1000 - countDownDiff;
         return options.handler(req, res, next, options.remainMessageRender(remainTime));
       }
     }
@@ -64,10 +64,10 @@ function MyFancyRateLimiter(options) {
     options.store[id].requests.push(moment().valueOf());
 
     // Check route being flooded
-    var totalRequest = options.store[id].requests.length;
-    var first = moment.unix(options.store[id].requests[0]);
-    var last = moment.unix(options.store[id].requests[totalRequest - 1]);
-    var diff = parseInt(last.diff(first)) / 1000;
+    const totalRequest = options.store[id].requests.length;
+    const first = moment.unix(options.store[id].requests[0]);
+    const last = moment.unix(options.store[id].requests[totalRequest - 1]);
+    const diff = parseInt(last.diff(first)) / 1000;
 
     if (totalRequest > options.maxRequest && diff < options.timeRange) {
       options.store[id].isCountdown = true;

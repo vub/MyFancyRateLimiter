@@ -26,7 +26,7 @@ app.use('/users', usersRouter);
 // Middleware used here
 app.use('/create-user', MyFancyRateLimiter({
   maxReqsPerSecond: 0.5,
-  cooldownTime: 15,
+  cooldownTime: 5,
   requestIdentifier: req => req.connection.remoteAddress
 }), (req, res) => {
   // ... actual create user in database ...

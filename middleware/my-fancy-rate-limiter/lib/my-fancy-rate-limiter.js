@@ -43,6 +43,13 @@ function MyFancyRateLimiter(options) {
       isCountdown: false,
     };
 
+    // Renew clear data when time expired ( avoid Memory leak )
+    clearTimeout(options.store[id].cleaner);
+    options.store[id].cleaner = setTimeout(function(){
+      clearTimeout(options.store[id].cleaner);
+      delete options.store[id];
+    }, options.timeRange);
+
     // Check if is penalty
     if (options.store[id].isCountdown == true) {
       const now = moment().valueOf();
@@ -51,6 +58,7 @@ function MyFancyRateLimiter(options) {
       if (countDownDiff > options.cooldownTime * 1000) {
         options.store[id].requests = [];
         options.store[id].isCountdown = false;
+        clearTimeout(options.store[id].cleaner);
       } else {
         const remainTime = options.cooldownTime * 1000 - countDownDiff;
         return options.handler(req, res, next, options.remainMessageRender(remainTime));
